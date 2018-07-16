@@ -18,7 +18,9 @@
             printable: 'test.pdf',
             type: 'pdf',
             showModal: true,
-            onPrintDialogClose: () => console.log('The print dialog was closed')
+            onPrintDialogClose: function(){
+              console.log('The print dialog was closed')
+            }
         });
     }
 
