@@ -25,7 +25,7 @@ export default {
     let htmlData = ''
 
     // Check if there is a header on top of the table
-    if (params.header) htmlData += '<h1 style="' + params.headerStyle + '">' + params.header + '</h1>'
+    if (params.header) htmlData += '<h1 style=' + params.headerStyle + '>' + params.header + '</h1>'
 
     // Build the printable html data
     htmlData += jsonToHTML(params)
@@ -38,7 +38,7 @@ export default {
   }
 }
 
-function jsonToHTML (params) {
+function jsonToHTML(params) {
   // Define an empty holder for the htmldata
   let htmlData = ''
 
@@ -64,7 +64,7 @@ function jsonToHTML (params) {
  * @param  {object} params parameters list which needs to be considered while generating the table.
  * @param  {array} dataset the array containing the dataset which needs to be converted to a table.
  */
-function createHtmlTable (params, dataset) {
+function createHtmlTable(params, dataset) {
   // Defining the htmlTable holder
   let htmlData = ''
 
@@ -77,8 +77,11 @@ function createHtmlTable (params, dataset) {
     let data = tableObj.printable
     let properties = tableObj.properties
 
+    // Add the table header on top of each table
+    htmlData += '<h1 style="' + params.headerStyle + '">' + tableObj.headerName + '</h1>'
+
     // Create a html table
-    htmlData += '<br><table style="border-collapse: collapse; width: 100%;">'
+    htmlData += '<table style="border-collapse: collapse;">'
 
     // Check if the header should be repeated
     if (params.repeatTableHeader) {
@@ -90,7 +93,7 @@ function createHtmlTable (params, dataset) {
 
     // Add the table header columns
     for (let a = 0; a < properties.length; a++) {
-      htmlData += '<th style="width:' + (properties[a].columnSize * 100) + '%; ' + params.gridHeaderStyle + '">' + capitalizePrint(properties[a].displayName) + '</th>'
+      htmlData += '<th style="' + params.gridHeaderStyle + '">' + capitalizePrint(properties[a].displayName) + '</th>'
     }
 
     // Add the closing tag for the table header row
@@ -124,7 +127,7 @@ function createHtmlTable (params, dataset) {
         }
 
         // Add the row contents and styles
-        htmlData += '<td style="width:' + (properties[n].columnSize * 100) + '%;' + params.gridStyle + '">' + stringData + '</td>'
+        htmlData += '<td width="' + (properties[n].columnSize * 100) + '%" style="' + params.gridStyle + '">' + stringData + '</td>'
       }
 
       // Add the row closing tag
@@ -134,7 +137,6 @@ function createHtmlTable (params, dataset) {
     // Add the table and body closing tags
     htmlData += '</tbody></table>'
   }
-
   // Return the table
   return htmlData
 }
