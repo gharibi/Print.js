@@ -38,7 +38,7 @@ export default {
   }
 }
 
-function jsonToHTML(params) {
+function jsonToHTML (params) {
   // Define an empty holder for the htmldata
   let htmlData = ''
 
@@ -64,7 +64,7 @@ function jsonToHTML(params) {
  * @param  {object} params parameters list which needs to be considered while generating the table.
  * @param  {array} dataset the array containing the dataset which needs to be converted to a table.
  */
-function createHtmlTable(params, dataset) {
+function createHtmlTable (params, dataset) {
   // Defining the htmlTable holder
   let htmlData = ''
 
